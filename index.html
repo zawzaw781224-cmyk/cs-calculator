@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+    <h1> Student Calculator</h1>
+
+    <p class="subtitle">
+        Calculation tools for CS/CT, Engineering and Nursing students.
+    </p>
+
+    <section class="category">
+
+        <h2>💻 CS / CT</h2>
+
+        <div class="tools">
+
+            <div class="tool-card" onclick="showTruthTable()">
+    <h3> Truth Table Generator</h3>
+    <p>Generate Boolean logic truth tables</p>
+</div>
+    
+
+            <div class="tool-card" onclick="showNumberSystem()">
+
+                <h3>Number System</h3>
+                <p>Binary, Decimal, Hexadecimal & Octal</p>
+            </div>
+
+            <div class="tool-card" onclick="showNetworking()">
+                <h3>Networking Calculator</h3>
+                <p>IP, CIDR, Subnet & Host calculation</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="category">
+
+        <h2>🏗️ Engineering</h2>
+
+        <div class="tools">
+
+            <div class="tool-card" onclick="showRebarCalculator()">
+    <h3>🔩 Rebar / Steel Calculator</h3>
+    <p>Steel weight, wastage & cost estimation</p>
+</div>
+
+            <div class="tool-card" onclick="showConstruction()">
+                <h3>Construction Calculator</h3>
+                <p>Construction related calculations</p>
+            </div>
+
+            <div class="tool-card" onclick="showBrickCalculator()">
+    <h3>Brick Calculator</h3>
+    <p>Estimate bricks required for a wall</p>
+</div>
+
+            <div class="tool-card" onclick="showTileCalculator()">
+    <h3>🔲 Tile Calculator</h3>
+    <p>Calculate tiles required with wastage</p>
+</div>
+
+        </div>
+
+    </section>
+
+
+    <section class="category">
+
+        <h2>🩺 Nursing</h2>
+
+        <div class="tools">
+
+            <div class="tool-card" onclick="showDosageCalculator()">
+    <h3>💊 Dosage Calculator</h3>
+    <p>Medication dosage practice</p>
+</div>
+
+            <div class="tool-card" onclick="showIVCalculator()">
+    <h3>💧 IV / Drip Rate Calculator</h3>
+    <p>Calculate IV flow and drip rate</p>
+</div>
+
+            <div class="tool-card" onclick="showIVTimeCalculator()">
+    <h3>💧 IV Infusion Time</h3>
+    <p>Calculate IV infusion time</p>
+</div>
+     
+    <div class="tool-card" onclick="showDilutionCalculator()">
+    <h3>🧪 Drug Dilution Calculator</h3>
+    <p>Medication concentration & dilution practice</p>
+</div>
+
+        </div>
+
+    </section>
+<section id="number-system" class="calculator-section">
+
+    <h2>🔢 Number System Converter</h2>
+
+    <label for="conversion">Conversion Type</label>
+
+    <select id="conversion">
+    <option value="decimal-binary">Decimal → Binary</option>
+    <option value="binary-decimal">Binary → Decimal</option>
+
+    <option value="decimal-hex">Decimal → Hexadecimal</option>
+    <option value="hex-decimal">Hexadecimal → Decimal</option>
+
+    <option value="binary-hex">Binary → Hexadecimal</option>
+    <option value="hex-binary">Hexadecimal → Binary</option>
+
+    <option value="decimal-octal">Decimal → Octal</option>
+    <option value="octal-decimal">Octal → Decimal</option>
+
+    <option value="binary-octal">Binary → Octal</option>
+    <option value="octal-binary">Octal → Binary</option>
+</select>
+
+    <label for="numberInput">Enter Number</label>
+
+    <input
+        type="text"
+        id="numberInput"
+        placeholder="Enter a number"
+    >
+
+    <button onclick="convertNumber()">
+        Convert
+    </button>
+
+    <div id="result"></div>
+
+</section>
+<section id="networking" class="calculator-section">
+
+    <h2>🌐 IPv4 / CIDR Calculator</h2>
+
+    <label for="ipInput">IP Address</label>
+
+    <input
+        type="text"
+        id="ipInput"
+        placeholder="e.g. 192.168.1.10"
+    >
+
+    <label for="cidrInput">CIDR</label>
+
+    <select id="cidrInput">
+        <option value="8">/8</option>
+        <option value="16">/16</option>
+        <option value="24" selected>/24</option>
+        <option value="25">/25</option>
+        <option value="26">/26</option>
+        <option value="27">/27</option>
+        <option value="28">/28</option>
+        <option value="29">/29</option>
+        <option value="30">/30</option>
+    </select>
+
+    <button onclick="calculateNetwork()">
+        Calculate
+    </button>
+
+    <div id="networkResult"></div>
+
+</section>
+<section id="construction" class="calculator-section">
+
+    <h2>🏗️ Concrete Material Calculator</h2>
+
+    <label for="concreteVolume">
+        Concrete Volume (m³)
+    </label>
+
+    <input
+        type="number"
+        id="concreteVolume"
+        placeholder="e.g. 10"
+        min="0"
+        step="0.01"
+    >
+
+    <label for="mixRatio">
+        Concrete Mix Ratio
+    </label>
+
+    <select id="mixRatio">
+        <option value="1:2:4">1 : 2 : 4</option>
+        <option value="1:1.5:3">1 : 1.5 : 3</option>
+    </select>
+
+    <button onclick="calculateConcrete()">
+        Calculate
+    </button>
+
+    <div id="constructionResult"></div>
+
+</section>
+<section id="brick-calculator" class="calculator-section">
+
+    <h2>🧱 Brick Quantity Calculator</h2>
+
+    <label for="wallLength">
+        Wall Length (m)
+    </label>
+
+    <input
+        type="number"
+        id="wallLength"
+        placeholder="e.g. 5"
+        min="0"
+        step="0.01"
+    >
+
+    <label for="wallHeight">
+        Wall Height (m)
+    </label>
+
+    <input
+        type="number"
+        id="wallHeight"
+        placeholder="e.g. 3"
+        min="0"
+        step="0.01"
+    >
+
+    <label for="wallThickness">
+        Wall Thickness
+    </label>
+
+    <select id="wallThickness">
+        <option value="0.10">4 inch wall</option>
+        <option value="0.20">8 inch wall</option>
+    </select>
+    <label for="mortarRatio">
+    Mortar Mix Ratio
+</label>
+
+<select id="mortarRatio">
+    <option value="1:4">1 : 4</option>
+    <option value="1:5">1 : 5</option>
+    <option value="1:6" selected>1 : 6</option>
+</select>
+
+    <button onclick="calculateBricks()">
+        Calculate
+    </button>
+
+    <div id="brickResult"></div>
+
+</section>
+<section id="tile-calculator" class="calculator-section">
+
+    <h2>🔲 Tile Quantity Calculator</h2>
+
+    <label for="floorLength">
+        Floor Length (m)
+    </label>
+
+    <input
+        type="number"
+        id="floorLength"
+        placeholder="e.g. 5"
+        min="0"
+        step="0.01"
+    >
+
+    <label for="floorWidth">
+        Floor Width (m)
+    </label>
+
+    <input
+        type="number"
+        id="floorWidth"
+        placeholder="e.g. 4"
+        min="0"
+        step="0.01"
+    >
+
+    <label for="tileLength">
+        Tile Length (cm)
+    </label>
+
+    <input
+        type="number"
+        id="tileLength"
+        placeholder="e.g. 60"
+        min="0"
+        step="0.1"
+    >
+
+    <label for="tileWidth">
+        Tile Width (cm)
+    </label>
+
+    <input
+        type="number"
+        id="tileWidth"
+        placeholder="e.g. 60"
+        min="0"
+        step="0.1"
+    >
+
+    <label for="tileWastage">
+        Wastage (%)
+    </label>
+
+    <input
+        type="number"
+        id="tileWastage"
+        value="5"
+        min="0"
+        step="1"
+    >
+
+    <button onclick="calculateTiles()">
+        Calculate
+    </button>
+
+    <div id="tileResult"></div>
+
+</section>
+
+<section id="dosage-calculator" class="calculator-section">
+
+    <h2>💊 Dosage Calculator</h2>
+
+    <p>
+        Student practice only — verify medication calculations
+        with a qualified healthcare professional.
+    </p>
+
+    <label for="orderedDose">
+        Ordered Dose (mg)
+    </label>
+
+    <input
+        type="number"
+        id="orderedDose"
+        placeholder="e.g. 500"
+        min="0"
+        step="0.01"
+    >
+
+    <label for="availableDose">
+        Available Dose (mg)
+    </label>
+
+    <input
+        type="number"
+        id="availableDose"
+        placeholder="e.g. 250"
+        min="0"
+        step="0.01"
+    >
+
+    <label for="availableQuantity">
+        Available Quantity
+    </label>
+
+    <input
+        type="number"
+        id="availableQuantity"
+        placeholder="e.g. 1"
+        min="0"
+        step="0.01"
+    >
+
+    <button onclick="calculateDosage()">
+        Calculate
+    </button>
+
+    <div id="dosageResult"></div>
+
+</section>
+<section id="iv-calculator" class="calculator-section">
+
+    <h2>💧 IV / Drip Rate Calculator</h2>
+
+    <p>
+        Student practice only — verify calculations
+        with a qualified healthcare professional.
+    </p>
+
+    <label for="ivVolume">
+        IV Volume (mL)
+    </label>
+
+    <input
+        type="number"
+        id="ivVolume"
+        placeholder="e.g. 1000"
+        min="0"
+        step="0.01"
+    >
+
+    <label for="ivTime">
+        Time (hours)
+    </label>
+
+    <input
+        type="number"
+        id="ivTime"
+        placeholder="e.g. 8"
+        min="0"
+        step="0.01"
+    >
+    <label for="dropFactor">
+    Drop Factor (drops/mL)
+</label>
+
+<select id="dropFactor">
+    <option value="10">10 drops/mL</option>
+    <option value="15">15 drops/mL</option>
+    <option value="20" selected>20 drops/mL</option>
+    <option value="60">60 drops/mL</option>
+</select>
+
+    <button onclick="calculateIV()">
+        Calculate
+    </button>
+
+    <div id="ivResult"></div>
+
+</section>
+<section id="iv-time-calculator" class="calculator-section">
+
+    <h2>💧 IV Infusion Time Calculator</h2>
+
+    <p>
+        Student practice only — verify calculations
+        with a qualified healthcare professional.
+    </p>
+
+    <label for="infusionVolume">
+        IV Volume (mL)
+    </label>
+
+    <input
+        type="number"
+        id="infusionVolume"
+        placeholder="e.g. 1000"
+        min="0"
+        step="0.01"
+    >
+
+    <label for="flowRate">
+        Flow Rate (mL/hour)
+    </label>
+
+    <input
+        type="number"
+        id="flowRate"
+        placeholder="e.g. 125"
+        min="0"
+        step="0.01"
+    >
+
+    <button onclick="calculateIVTime()">
+        Calculate
+    </button>
+
+    <div id="ivTimeResult"></div>
+
+</section>
+
+
+<section id="dilution-calculator" class="calculator-section">
+
+    <h2>🧪 Drug Dilution Calculator</h2>
+
+    <p>
+        Student practice only — verify medication calculations
+        with a qualified healthcare professional.
+    </p>
+
+    <label for="requiredDrugDose">
+        Required Dose (mg)
+    </label>
+
+    <input
+        type="number"
+        id="requiredDrugDose"
+        placeholder="e.g. 150"
+        min="0"
+        step="0.01"
+    >
+
+    <label for="availableDrugDose">
+        Available Drug (mg)
+    </label>
+
+    <input
+        type="number"
+        id="availableDrugDose"
+        placeholder="e.g. 250"
+        min="0"
+        step="0.01"
+    >
+
+    <label for="availableDrugVolume">
+        Available Volume (mL)
+    </label>
+
+    <input
+        type="number"
+        id="availableDrugVolume"
+        placeholder="e.g. 5"
+        min="0"
+        step="0.01"
+    >
+
+    <button onclick="calculateDilution()">
+        Calculate
+    </button>
+
+    <div id="dilutionResult"></div>
+
+</section>
+
+<section id="rebar-calculator" class="calculator-section">
+
+    <h2>🔩 Rebar / Steel Weight & Cost Calculator</h2>
+
+    <label for="barDiameter">Bar Diameter (mm)</label>
+    <select id="barDiameter">
+        <option value="8">8 mm</option>
+        <option value="10">10 mm</option>
+        <option value="12" selected>12 mm</option>
+        <option value="16">16 mm</option>
+        <option value="20">20 mm</option>
+        <option value="25">25 mm</option>
+        <option value="32">32 mm</option>
+    </select>
+
+    <label for="barLength">Length per Bar (m)</label>
+    <input
+        type="number"
+        id="barLength"
+        placeholder="e.g. 12"
+        min="0"
+        step="0.01"
+    >
+
+    <label for="barQuantity">Number of Bars</label>
+    <input
+        type="number"
+        id="barQuantity"
+        placeholder="e.g. 20"
+        min="1"
+        step="1"
+    >
+
+    <label for="steelWastage">Wastage (%)</label>
+    <input
+        type="number"
+        id="steelWastage"
+        value="5"
+        min="0"
+        step="0.1"
+    >
+
+    <label for="steelPrice">Steel Price (per kg)</label>
+    <input
+        type="number"
+        id="steelPrice"
+        placeholder="e.g. 3000"
+        min="0"
+        step="0.01"
+    >
+
+    <button onclick="calculateRebar()">
+        Calculate
+    </button>
+
+    <div id="rebarResult"></div>
+
+
+
+</section>
+<section id="truth-table-calculator" class="calculator-section">
+
+    <h2>🧮 Truth Table Generator</h2>
+
+    <p>
+        Use AND, OR, NOT and XOR operators.
+    </p>
+
+    <label for="logicExpression">
+        Boolean Expression
+    </label>
+
+    <input
+        type="text"
+        id="logicExpression"
+        placeholder="e.g. (A AND B) OR NOT C"
+    >
+
+    <button onclick="generateTruthTable()">
+        Generate Truth Table
+    </button>
+
+    <div id="truthTableResult"></div>
+
+</section>
+</section>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,487 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #f5f7fb;
+    --card: #ffffff;
+    --text: #111827;
+    --muted: #6b7280;
+    --border: #e5e7eb;
+    --dark: #111827;
+    --soft: #f8fafc;
+    --radius: 20px;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 15% 10%,
+            #DCE6FF 0%,
+            transparent 40%
+        ),
+        radial-gradient(
+            circle at 85% 20%,
+            #E7DFFF 0%,
+            transparent 38%
+        ),
+        #E9EDF5;
+
+    color: var(--text);
+    min-height: 100vh;
+    padding: 30px 16px;
+}
+
+.container {
+    width: 100%;
+    max-width: 1100px;
+    margin: auto;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.container > h1 {
+    text-align: center;
+    font-size: clamp(32px, 6vw, 52px);
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    margin-top: 25px;
+    margin-bottom: 12px;
+}
+
+.subtitle {
+    text-align: center;
+    color: var(--muted);
+    font-size: 16px;
+    margin-bottom: 45px;
+}
+
+
+/* =========================
+   CATEGORY
+========================= */
+
+.category {
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(12px);
+    padding: 28px;
+    margin-bottom: 28px;
+    border: 1px solid rgba(229, 231, 235, 0.9);
+    border-radius: var(--radius);
+    box-shadow:
+        0 10px 35px rgba(15, 23, 42, 0.06);
+}
+
+.category h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    letter-spacing: -0.4px;
+}
+
+
+/* =========================
+   TOOL GRID
+========================= */
+
+.tools {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(210px, 1fr));
+    gap: 16px;
+}
+
+
+/* =========================
+   TOOL CARD
+========================= */
+
+.tool-card {
+    position: relative;
+    background: linear-gradient(
+        145deg,
+        #ffffff,
+        #f8fafc
+    );
+
+    border: 1px solid var(--border);
+    padding: 22px;
+    border-radius: 16px;
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.tool-card::after {
+    content: "→";
+
+    position: absolute;
+    right: 18px;
+    bottom: 17px;
+
+    font-size: 20px;
+    color: #9ca3af;
+
+    transition: 0.2s ease;
+}
+
+.tool-card:hover {
+    transform: translateY(-5px);
+
+    border-color: #c7d2fe;
+
+    box-shadow:
+        0 14px 30px rgba(15, 23, 42, 0.10);
+}
+
+.tool-card:hover::after {
+    color: var(--dark);
+    transform: translateX(4px);
+}
+
+.tool-card h3 {
+    font-size: 18px;
+    margin-bottom: 9px;
+    padding-right: 25px;
+}
+
+.tool-card p {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+
+/* =========================
+   CALCULATOR
+========================= */
+
+.calculator-section {
+    background: rgba(255, 255, 255, 0.95);
+
+    padding: 30px;
+
+    margin-top: 25px;
+
+    border-radius: var(--radius);
+
+    border: 1px solid var(--border);
+
+    box-shadow:
+        0 12px 40px rgba(15, 23, 42, 0.08);
+
+    display: none;
+
+    animation: calculatorOpen 0.3s ease;
+}
+
+@keyframes calculatorOpen {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.calculator-section h2 {
+    font-size: 26px;
+    margin-bottom: 22px;
+    letter-spacing: -0.5px;
+}
+
+.calculator-section label {
+    display: block;
+
+    margin-top: 17px;
+    margin-bottom: 8px;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    color: #374151;
+}
+
+.calculator-section input,
+.calculator-section select {
+    width: 100%;
+
+    padding: 13px 14px;
+
+    background: #f9fafb;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 11px;
+
+    font-size: 16px;
+
+    color: var(--text);
+
+    transition: 0.2s ease;
+}
+
+.calculator-section input:focus,
+.calculator-section select:focus {
+    outline: none;
+
+    background: white;
+
+    border-color: #6366f1;
+
+    box-shadow:
+        0 0 0 4px rgba(99, 102, 241, 0.10);
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+.calculator-section button {
+    width: 100%;
+
+    margin-top: 23px;
+
+    padding: 14px 18px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: var(--dark);
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.calculator-section button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 22px rgba(17, 24, 39, 0.18);
+}
+
+.calculator-section button:active {
+    transform: translateY(0);
+}
+
+
+/* =========================
+   RESULT
+========================= */
+
+#result,
+#networkResult,
+#constructionResult,
+#brickResult,
+#tileResult,
+#dosageResult,
+#ivResult,
+#ivTimeResult,
+#dilutionResult,
+#rebarResult,
+#truthTableResult {
+    margin-top: 24px;
+
+    padding: 20px;
+
+    background: var(--soft);
+
+    border: 1px solid var(--border);
+
+    border-radius: 14px;
+
+    line-height: 1.7;
+}
+
+#result:empty,
+#networkResult:empty,
+#constructionResult:empty,
+#brickResult:empty,
+#tileResult:empty,
+#dosageResult:empty,
+#ivResult:empty,
+#ivTimeResult:empty,
+#dilutionResult:empty,
+#rebarResult:empty,
+#truthTableResult:empty {
+    display: none;
+}
+
+
+/* =========================
+   RESULT HEADINGS
+========================= */
+
+#result h3,
+#networkResult h3,
+#constructionResult h3,
+#brickResult h3,
+#tileResult h3,
+#dosageResult h3,
+#ivResult h3,
+#ivTimeResult h3,
+#dilutionResult h3,
+#rebarResult h3,
+#truthTableResult h3 {
+    margin-bottom: 12px;
+    font-size: 20px;
+}
+
+
+/* =========================
+   RESULT TEXT
+========================= */
+
+#result p,
+#networkResult p,
+#constructionResult p,
+#brickResult p,
+#tileResult p,
+#dosageResult p,
+#ivResult p,
+#ivTimeResult p,
+#dilutionResult p,
+#rebarResult p {
+    margin: 5px 0;
+}
+
+
+/* =========================
+   TRUTH TABLE
+========================= */
+
+#truthTableResult {
+    overflow-x: auto;
+}
+
+#truthTableResult table {
+    width: 100%;
+    min-width: 400px;
+
+    margin-top: 18px;
+
+    border-collapse: collapse;
+
+    background: white;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+}
+
+#truthTableResult th {
+    background: var(--dark);
+    color: white;
+
+    padding: 13px 12px;
+
+    font-size: 14px;
+}
+
+#truthTableResult td {
+    padding: 12px;
+
+    border-bottom: 1px solid var(--border);
+
+    text-align: center;
+
+    font-family: "Courier New", monospace;
+}
+
+#truthTableResult tbody tr:nth-child(even) {
+    background: #f8fafc;
+}
+
+#truthTableResult tbody tr:hover {
+    background: #eef2ff;
+}
+
+
+/* =========================
+   HR
+========================= */
+
+.calculator-section hr {
+    border: none;
+
+    border-top: 1px solid var(--border);
+
+    margin: 18px 0;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 18px 12px;
+    }
+
+    .container > h1 {
+        margin-top: 15px;
+        font-size: 34px;
+    }
+
+    .subtitle {
+        font-size: 14px;
+        margin-bottom: 30px;
+    }
+
+    .category {
+        padding: 20px;
+        border-radius: 16px;
+    }
+
+    .category h2 {
+        font-size: 21px;
+    }
+
+    .tools {
+        grid-template-columns: 1fr;
+    }
+
+    .tool-card {
+        padding: 20px;
+    }
+
+    .calculator-section {
+        padding: 20px;
+        border-radius: 16px;
+    }
+
+    .calculator-section h2 {
+        font-size: 22px;
+    }
+
+    #truthTableResult {
+        padding: 14px;
+    }
+}
